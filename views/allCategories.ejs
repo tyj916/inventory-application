@@ -8,5 +8,11 @@
 <body>
   <%- include('partials/navbar.ejs') %>
   <h1><%= title %></h1>
+  <a href="/category/new">Add new category</a>
+  <ul>
+    <% for (let i = 0; i < categories.length; i++) { %>
+      <li><%= categories[i].name %></li>
+    <% } %>
+  </ul>
 </body>
 </html>

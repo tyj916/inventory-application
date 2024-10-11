@@ -5,6 +5,14 @@ function getAllCategories(req, res) {
   });
 }
 
+function addNewCategoryGet(req, res) {
+  res.render('newCategory', {
+    title: 'New Category',
+    links: res.locals.links,
+  });
+}
+
 module.exports = {
-  getAllCategories
+  getAllCategories,
+  addNewCategoryGet,
 };

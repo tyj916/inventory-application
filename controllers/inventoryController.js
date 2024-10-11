@@ -1,6 +1,7 @@
 function getInventory(req, res) {
   res.render('index', {
-    title: 'Inventory App'
+    title: 'Inventory App',
+    links: res.locals.links,
   });
 }
 

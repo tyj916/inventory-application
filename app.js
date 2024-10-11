@@ -4,7 +4,18 @@ const itemsRouter = require('./routes/itemsRouter');
 const categoriesRouter = require('./routes/categoriesRouter');
 const app = express();
 
+function navLinks(req, res, next) {
+  res.locals.links = [
+    { href: '/', text: 'Home' },
+    { href: '/item', text: 'Items' },
+    { href: '/category', text: 'Categories' },
+  ];
+
+  next();
+}
+
 app.set('view engine', 'ejs');
+app.use(navLinks);
 app.use('/', inventoryRouter);
 app.use('/item', itemsRouter);
 app.use('/category', categoriesRouter);

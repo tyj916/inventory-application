@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+</head>
+<body>
+  <%- include('partials/navbar.ejs') %>
+  <h1><%= title %></h1>
+  <form action="/item/new" method="post">
+    <label for="name">New Item Name: </label>
+    <input type="text" name="name" id="name" required>
+    <label for="price">Price: </label>
+    <input type="tel" name="price" id="price">
+    <label for="description">Description: </label>
+    <textarea name="description" id="description"></textarea>
+    <label for="quantity">Quantity: </label>
+    <input type="tel" name="quantity" id="quantity">
+    <label for="category">Category: </label>
+    <select name="category" id="category" multiple>
+      <% for (let i = 0; i < categories.length; i++) { %>
+        <option value="<%= categories[i].id %>">
+          <%= categories[i].id %><%= categories[i].name %>
+        </option>
+      <% } %>
+    </select>
+    <a href="/category/new">Add new category</a>
+    <button type="submit">Add New Item</button>
+  </form>
+</body>
+</html>

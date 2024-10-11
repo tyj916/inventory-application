@@ -8,5 +8,16 @@
 <body>
   <%- include('partials/navbar.ejs') %>
   <h1><%= title %></h1>
+  <a href="/item/new">Add new item</a>
+  <ul>
+    <% for (let i = 0; i < items.length; i++) { %>
+      <li>
+        <%= items[i].name %>
+        <%= items[i].price %>
+        <%= items[i].description %>
+        <%= items[i].quantity %>
+      </li>
+    <% } %>
+  </ul>
 </body>
 </html>

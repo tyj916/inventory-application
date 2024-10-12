@@ -14,6 +14,23 @@ async function getAllItems() {
   return rows;
 }
 
+async function getItemById(itemId) {
+  const { rows } = await pool.query(`SELECT * FROM item WHERE id = $1`, [itemId]);
+  return rows[0];
+}
+
+async function getItemCategory(itemId) {
+  const { rows } = await pool.query(`
+    SELECT category.id, category.name FROM item
+    LEFT JOIN item_category
+    ON item.id = item_category.item_id
+    LEFT JOIN category
+    ON category.id = item_category.category_id
+    WHERE item.id = $1
+  `, [itemId]);
+  return rows;
+}
+
 async function insertItem(
   itemName, 
   price, 
@@ -44,5 +61,7 @@ module.exports = {
   getAllCategories,
   insertCategory,
   getAllItems,
+  getItemById,
+  getItemCategory,
   insertItem,
 };

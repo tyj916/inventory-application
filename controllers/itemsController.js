@@ -25,8 +25,20 @@ async function addNewItemPost(req, res) {
   res.redirect('/item');
 }
 
+async function getItemById(req, res) {
+  const { id } = req.params;
+  const item = await db.getItemById(id);
+  const itemCategory = await db.getItemCategory(id);
+  res.render('itemDetails', {
+    title: item.name,
+    item: item,
+    itemCategory: itemCategory,
+  });
+}
+
 module.exports = {
   getAllItems,
   addNewItemGet,
   addNewItemPost,
+  getItemById,
 };

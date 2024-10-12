@@ -5,5 +5,6 @@ const itemsRouter = Router();
 itemsRouter.get('/', itemsController.getAllItems);
 itemsRouter.get('/new', itemsController.addNewItemGet);
 itemsRouter.post('/new', itemsController.addNewItemPost);
+itemsRouter.get('/:id', itemsController.getItemById);
 
 module.exports = itemsRouter;

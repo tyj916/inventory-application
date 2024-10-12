@@ -9,6 +9,33 @@
   <%- include('../partials/navbar.ejs') %>
   <h1><%= title %></h1>
   <a href="/item/new">Add new item</a>
-  <%- include('partials/itemListTable') %>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th></th>
+    </tr>
+    <% for (let i = 0; i < items.length; i++) { %>
+      <tr>
+        <td><%= items[i].id %></td>
+        <td><%= items[i].name %></td>
+        <td><%= items[i].price %></td>
+        <td><%= items[i].quantity %></td>
+        <td><a href="/item/<%= items[i].id %>">Item Details</a></td>
+        <td>
+          <form action="/item/<%= items[i].id %>/remove" method="POST">
+            <button 
+              type="submit" 
+              onclick="return confirm('Remove <%= items[i].name %>?')"
+            >
+              Remove
+            </button>
+          </form>
+        </td>
+      </tr>
+    <% } %>
+  </table>
 </body>
 </html>

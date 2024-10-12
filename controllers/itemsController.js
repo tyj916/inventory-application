@@ -55,6 +55,12 @@ async function updateItemPost(req, res) {
   res.redirect(`/item/${id}`);
 }
 
+async function removeItem(req, res) {
+  const { id } = req.params;
+  await db.removeItem(id);
+  res.redirect('/item');
+}
+
 module.exports = {
   getAllItems,
   addNewItemGet,
@@ -62,4 +68,5 @@ module.exports = {
   getItemById,
   updateItemGet,
   updateItemPost,
+  removeItem,
 };

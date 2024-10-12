@@ -5,6 +5,23 @@ async function getAllCategories() {
   return rows;
 }
 
+async function getCategoryById(categoryId) {
+  const { rows } = await pool.query(`SELECT * FROM category WHERE id = $1`, [categoryId]);
+  return rows[0];
+}
+
+async function getCategoryItems(categoryId) {
+  const { rows } = await pool.query(`
+    SELECT item.id, item.name, item.price, item.quantity FROM item
+    LEFT JOIN item_category
+    ON item.id = item_category.item_id
+    LEFT JOIN category
+    ON item_category.category_id = category.id
+    WHERE category.id = $1
+  `, [categoryId]);
+  return rows;
+}
+
 async function insertCategory(categoryName) {
   await pool.query(`INSERT INTO category (name) VALUES ($1)`, [categoryName]);
 }
@@ -59,6 +76,8 @@ async function insertItem(
 
 module.exports = {
   getAllCategories,
+  getCategoryById,
+  getCategoryItems,
   insertCategory,
   getAllItems,
   getItemById,

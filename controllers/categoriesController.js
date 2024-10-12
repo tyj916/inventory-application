@@ -22,8 +22,20 @@ async function addNewCategoryPost(req, res) {
   res.redirect('/category');
 }
 
+async function getCategoryById(req, res) {
+  const { id } = req.params;
+  const category = await db.getCategoryById(id);
+  const items = await db.getCategoryItems(id);
+  res.render('categoryDetails', {
+    title: category.name,
+    category: category,
+    items: items,
+  });
+}
+
 module.exports = {
   getAllCategories,
   addNewCategoryGet,
   addNewCategoryPost,
+  getCategoryById,
 };

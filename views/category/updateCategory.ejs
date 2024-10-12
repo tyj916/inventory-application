@@ -9,7 +9,10 @@
   <%- include('../partials/navbar.ejs') %>
   <a href="/category">&lt; Back To Categories List</a>
   <h1><%= title %></h1>
-  <a href="/category/<%= category.id %>/update">Update Category</a>
-  <%- include('../item/partials/itemListTable') %>
+  <form action="/category/<%= category.id %>/update" method="POST">
+    <label for="name">Category Name: </label>
+    <input type="text" name="name" id="name" value="<%= category.name %>" required>
+    <button type="submit">Update Category</button>
+  </form>
 </body>
 </html>

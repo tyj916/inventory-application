@@ -6,5 +6,7 @@ categoriesRouter.get('/', categoriesController.getAllCategories);
 categoriesRouter.get('/new', categoriesController.addNewCategoryGet);
 categoriesRouter.post('/new', categoriesController.addNewCategoryPost);
 categoriesRouter.get('/:id', categoriesController.getCategoryById);
+categoriesRouter.get('/:id/update', categoriesController.updateCategoryGet);
+categoriesRouter.post('/:id/update', categoriesController.updateCategoryPost);
 
 module.exports = categoriesRouter;

@@ -4,7 +4,6 @@ async function getAllCategories(req, res) {
   const categories = await db.getAllCategories();
   res.render('category/allCategories', {
     title: 'All Categories',
-    links: res.locals.links,
     categories: categories,
   });
 }
@@ -12,7 +11,6 @@ async function getAllCategories(req, res) {
 function addNewCategoryGet(req, res) {
   res.render('category/newCategory', {
     title: 'New Category',
-    links: res.locals.links,
   });
 }
 
@@ -33,9 +31,27 @@ async function getCategoryById(req, res) {
   });
 }
 
+async function updateCategoryGet(req, res) {
+  const { id } = req.params;
+  const category = await db.getCategoryById(id);
+  res.render('category/updateCategory', {
+    title: 'Update Category',
+    category: category,
+  });
+}
+
+async function updateCategoryPost(req, res) {
+  const { id } = req.params;
+  const { name } = req.body;
+  await db.updateCategory(id, name);
+  res.redirect(`/category/${id}`);
+}
+
 module.exports = {
   getAllCategories,
   addNewCategoryGet,
   addNewCategoryPost,
   getCategoryById,
+  updateCategoryGet,
+  updateCategoryPost,
 };

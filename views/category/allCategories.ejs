@@ -20,6 +20,16 @@
         <td><%= categories[i].id %></td>
         <td><%= categories[i].name %></td>
         <td><a href="/category/<%= categories[i].id %>">View Details</a></td>
+        <td>
+          <form action="/category/<%= categories[i].id %>/remove" method="POST">
+            <button 
+              type="submit" 
+              onclick="return confirm('Remove <%= categories[i].name %>?')"
+            >
+              Remove
+            </button>
+          </form>
+        </td>
       </tr>
     <% } %>
   </table>

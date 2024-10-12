@@ -9,6 +9,7 @@
   <%- include('../partials/navbar.ejs') %>
   <a href="/item">&lt; Back To Items List</a>
   <h1><%= title %></h1>
+  <a href="/item/<%= item.id %>/update">Update Details</a>
   <p>Category: <%- include('partials/itemCategory') %></p>
   <p>Price: <%= item.price %></p>
   <p>Quantity: <%= item.quantity %></p>

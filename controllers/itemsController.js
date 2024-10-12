@@ -4,7 +4,6 @@ async function getAllItems(req, res) {
   const items = await db.getAllItems();
   res.render('item/allItems', {
     title: 'All Items',
-    links: res.locals.links,
     items: items,
   });
 }
@@ -13,7 +12,6 @@ async function addNewItemGet(req, res) {
   const categories = await db.getAllCategories();
   res.render('item/newItem', {
     title: 'Add New Item',
-    links: res.locals.links,
     categories: categories,
   });
 }
@@ -36,9 +34,23 @@ async function getItemById(req, res) {
   });
 }
 
+async function updateItemGet(req, res) {
+  const { id } = req.params;
+  const item = await db.getItemById(id);
+  const itemCategory = await db.getItemCategory(id);
+  const categories = await db.getAllCategories();
+  res.render('item/updateItem', {
+    title: 'Update Item',
+    item: item,
+    itemCategory: itemCategory,
+    categories: categories,
+  });
+}
+
 module.exports = {
   getAllItems,
   addNewItemGet,
   addNewItemPost,
   getItemById,
+  updateItemGet,
 };

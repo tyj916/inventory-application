@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+</head>
+<body>
+  <%- include('../partials/navbar.ejs') %>
+  <a href="/item/<%= item.id %>">&lt; Back To Item Details</a>
+  <h1><%= title %></h1>
+  <form action="/item/<%= item.id %>/update" method="post">
+    <label for="name">Item Name: </label>
+    <input type="text" name="name" id="name" value="<%= item.name %>" required>
+    <label for="price">Price: </label>
+    <input type="tel" name="price" id="price" value="<%= item.price %>">
+    <label for="description">Description: </label>
+    <textarea name="description" id="description"><%= item.description %></textarea>
+    <label for="quantity">Quantity: </label>
+    <input type="tel" name="quantity" id="quantity" value="<%= item.quantity %>">
+    <label for="category">Category: </label>
+    <select name="category" id="category" multiple>
+      <% for (let i = 0; i < categories.length; i++) { %>
+        <option value="<%= categories[i].id %>" 
+          <% if (itemCategory.map(v => v.id).includes(categories[i].id)) { %>
+            selected
+          <% } %>
+        >
+          <%= categories[i].id %><%= categories[i].name %>
+        </option>
+      <% } %>
+    </select>
+    <a href="/category/new">Add new category</a>
+    <button type="submit">Update Item</button>
+  </form>
+</body>
+</html>

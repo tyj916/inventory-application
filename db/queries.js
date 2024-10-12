@@ -132,6 +132,11 @@ async function updateItem(
 
 async function removeItem(id) {
   await pool.query(`
+    DELETE FROM item_category
+    WHERE item_id = $1
+  `, [id]);
+
+  await pool.query(`
     DELETE FROM item
     WHERE id = $1
   `, [id]);

@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th></th>
+  </tr>
+  <% for (let i = 0; i < items.length; i++) { %>
+    <tr>
+      <td><%= items[i].id %></td>
+      <td><%= items[i].name %></td>
+      <td><%= items[i].price %></td>
+      <td><%= items[i].quantity %></td>
+      <td><a href="/item/<%= items[i].id %>">Item Details</a></td>
+    </tr>
+  <% } %>
+</table>

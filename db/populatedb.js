@@ -58,7 +58,7 @@ VALUES
 async function main() {
   console.log('seeding...');
   const client = new Client({
-    connectionString: `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:5432/${PGDATABASE}`,
+    connectionString: `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:5432/${PGDATABASE}?sslmode=require`,
   });
   await client.connect();
   await client.query(SQL);

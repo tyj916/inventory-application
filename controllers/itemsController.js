@@ -2,7 +2,7 @@ const db = require('../db/queries');
 
 async function getAllItems(req, res) {
   const items = await db.getAllItems();
-  res.render('allItems', {
+  res.render('item/allItems', {
     title: 'All Items',
     links: res.locals.links,
     items: items,
@@ -11,7 +11,7 @@ async function getAllItems(req, res) {
 
 async function addNewItemGet(req, res) {
   const categories = await db.getAllCategories();
-  res.render('newItem', {
+  res.render('item/newItem', {
     title: 'Add New Item',
     links: res.locals.links,
     categories: categories,
@@ -29,7 +29,7 @@ async function getItemById(req, res) {
   const { id } = req.params;
   const item = await db.getItemById(id);
   const itemCategory = await db.getItemCategory(id);
-  res.render('itemDetails', {
+  res.render('item/itemDetails', {
     title: item.name,
     item: item,
     itemCategory: itemCategory,

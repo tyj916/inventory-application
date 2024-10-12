@@ -10,6 +10,14 @@
   <a href="/category">&lt; Back To Categories List</a>
   <h1><%= title %></h1>
   <a href="/category/<%= category.id %>/update">Update Category</a>
+  <form action="/category/<%= category.id %>/remove" method="POST">
+    <button 
+      type="submit" 
+      onclick="return confirm('Remove <%= category.name %>?')"
+    >
+      Remove Category
+    </button>
+  </form>
   <table>
     <tr>
       <th>ID</th>

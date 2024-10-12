@@ -9,10 +9,19 @@
   <%- include('partials/navbar.ejs') %>
   <h1><%= title %></h1>
   <a href="/category/new">Add new category</a>
-  <ul>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
     <% for (let i = 0; i < categories.length; i++) { %>
-      <li><%= categories[i].name %></li>
+      <tr>
+        <td><%= categories[i].id %></td>
+        <td><%= categories[i].name %></td>
+        <td><a href="/category/<%= categories[i].id %>">View Category Items</a></td>
+      </tr>
     <% } %>
-  </ul>
+  </table>
 </body>
 </html>

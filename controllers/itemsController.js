@@ -47,10 +47,19 @@ async function updateItemGet(req, res) {
   });
 }
 
+async function updateItemPost(req, res) {
+  const { id } = req.params;
+  const { name, price, description, quantity, category } = req.body;
+  const category_ids = Array.isArray(category) ? category : [category];
+  await db.updateItem(id, name, price, description, quantity, category_ids);
+  res.redirect(`/item/${id}`);
+}
+
 module.exports = {
   getAllItems,
   addNewItemGet,
   addNewItemPost,
   getItemById,
   updateItemGet,
+  updateItemPost,
 };

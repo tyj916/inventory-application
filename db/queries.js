@@ -74,6 +74,35 @@ async function insertItem(
   }
 }
 
+async function updateItem(
+  itemId,
+  itemName, 
+  price, 
+  description, 
+  quantity, 
+  category_ids
+) {
+  await pool.query(`
+    UPDATE item
+    SET name = $2, price = $3, description = $4, quantity = $5
+    WHERE id = $1
+  `, [itemId, itemName, price, description, quantity]);
+
+  await pool.query(`
+    DELETE FROM item_category
+    WHERE item_id = $1
+  `, [itemId]);
+
+  for (let i = 0; i < category_ids.length; i++) {
+    await pool.query(`
+      INSERT INTO item_category
+      (item_id, category_id)
+      VALUES
+        ($1, $2)  
+    `, [itemId, category_ids[i]]);
+  }
+}
+
 module.exports = {
   getAllCategories,
   getCategoryById,
@@ -83,4 +112,5 @@ module.exports = {
   getItemById,
   getItemCategory,
   insertItem,
+  updateItem,
 };

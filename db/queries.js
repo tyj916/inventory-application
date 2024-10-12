@@ -34,6 +34,13 @@ async function updateCategory(id, name) {
   `, [id, name]);
 }
 
+async function removeItemFromCategory(categoryId, itemId) {
+  await pool.query(`
+    DELETE FROM item_category
+    WHERE category_id = $1 AND item_id = $2
+  `, [categoryId, itemId]);
+}
+
 async function getAllItems() {
   const { rows } = await pool.query(`SELECT * FROM item`);
   return rows;
@@ -117,6 +124,7 @@ module.exports = {
   getCategoryItems,
   insertCategory,
   updateCategory,
+  removeItemFromCategory,
   getAllItems,
   getItemById,
   getItemCategory,

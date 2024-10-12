@@ -47,6 +47,12 @@ async function updateCategoryPost(req, res) {
   res.redirect(`/category/${id}`);
 }
 
+async function removeItemFromCategory(req, res) {
+  const { categoryId, itemId } = req.params;
+  await db.removeItemFromCategory(categoryId, itemId);
+  res.redirect(`/category/${categoryId}`);
+}
+
 module.exports = {
   getAllCategories,
   addNewCategoryGet,
@@ -54,4 +60,5 @@ module.exports = {
   getCategoryById,
   updateCategoryGet,
   updateCategoryPost,
+  removeItemFromCategory,
 };
